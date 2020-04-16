@@ -41,5 +41,12 @@ namespace DatabaseBasic.API.Controllers
         public void Delete(int id)
         {
         }
+
+        // PATCH api/values/5
+        [HttpPatch("{id}")]
+        public void Patch(int id, [FromBody] string value)
+        {
+
+        }
     }
 }
