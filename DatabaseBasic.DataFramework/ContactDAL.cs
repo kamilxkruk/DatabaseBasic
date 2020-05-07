@@ -144,6 +144,41 @@ namespace DatabaseBasic.DataFramework
             }
         }
 
+        public List<Contact> GetContactsByName(string contactName)
+        {
+            List<Contact> result = new List<Contact>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = $@"SELECT * FROM Contacts 
+                                WHERE Name = @Name";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Name", contactName);
+
+                    conn.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        result.Add(new Contact
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Name = reader["Name"].ToString(),
+                            Surname = reader["Surname"].ToString(),
+                            PhoneNumber = reader["PhoneNumber"].ToString(),
+                            Sex = (SexEnum)Convert.ToInt32(reader["SexId"])
+                        });
+                    }
+                }
+            }
+
+            return result;
+
+        }
+
 
     }
 }

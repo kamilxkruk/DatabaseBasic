@@ -12,6 +12,8 @@ namespace DatabaseBasic.DataFramework.Model
         public SexEnum Sex { get; set; }
         public string PhoneNumber { get; set; }
 
+        public override string ToString() => $"{Name} | {Surname} | {PhoneNumber}";
+
     }
 
     public enum SexEnum

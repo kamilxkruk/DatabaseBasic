@@ -13,6 +13,20 @@ namespace DatabaseBasic
         static void Main(string[] args)
         {
             var contactsDAL = new ContactDAL();
+
+            Console.WriteLine("Podaj mi imię kontaktów które chcesz pobrać: ");
+
+            var contactName = Console.ReadLine();
+
+            var contacts = contactsDAL.GetContactsByName(contactName);
+
+            foreach (var contact in contacts)
+            {
+                Console.WriteLine(contact);
+
+            }
+
+            Console.ReadLine();
         }
     }
 }
